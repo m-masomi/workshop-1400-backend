@@ -1,0 +1,31 @@
+@import "../fonts/Icons/feather/feather.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  @apply relative z-0;
+}
+.card::after,
+.card::before {
+  content: "";
+  width: 6rem;
+  padding-top: 6rem;
+  background-image: url("/assets/images/bitmap.svg");
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+}
+.card::before {
+  right: 0;
+  top: 0;
+}
+.card::after {
+  left: 0;
+  bottom: 0;
+  transform: rotate(180deg);
+}
+
+.ltr{
+    direction: ltr;
+}

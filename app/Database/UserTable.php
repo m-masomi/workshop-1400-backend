@@ -12,12 +12,16 @@ class UserTable extends ConnectionHandler
         parent::__construct();
     }
 
-    public function getUser()
+    public function checkCredentials($username, $password)
     {
-        $stat =  $this->connection->prepare('SELECT * from `users` ');
-        $stat->execute();
-        $rows = $stat->fetch();
-        var_dump($rows);
+        $statement  = $this->connection->prepare("SELECT * FROM `users` WHERE email = ? AND mobile = ? ;");
+        $statement->execute([$username, $password]);
+        $row = $statement->fetch();
+        if ($row){
+            $_SESSION['auth-user'] = $row;
+        }
+
+        return $row;
 
     }
 }

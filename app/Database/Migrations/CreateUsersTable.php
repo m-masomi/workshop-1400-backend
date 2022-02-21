@@ -8,10 +8,12 @@ use App\Database\ConnectionHandler;
 
 class CreateUsersTable extends ConnectionHandler
 {
+
     public function __construct()
     {
         parent::__construct();
     }
+
 
     public function run()
     {
@@ -42,4 +44,5 @@ class CreateUsersTable extends ConnectionHandler
 
         echo $this->connection->exec($alter_sql);
     }
+
 }

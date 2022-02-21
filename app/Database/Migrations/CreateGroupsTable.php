@@ -8,6 +8,7 @@ use App\Database\ConnectionHandler;
 
 class CreateGroupsTable extends ConnectionHandler
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -29,4 +30,5 @@ class CreateGroupsTable extends ConnectionHandler
         ";
         echo $this->connection->exec($sql);
     }
+
 }

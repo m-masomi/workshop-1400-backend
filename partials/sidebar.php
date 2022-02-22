@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="flex flex-row my-2 w-full px-3 py-2 items-center border border-river-default hover:bg-river-default hover:text-white text-river-default">
-                <a href="" class="text-lg flex flex items-center">
+                <a href="users" class="text-lg flex flex items-center">
                     <i class="feather-users text-2xl ml-3"></i>
                     کاربران
                 </a>

@@ -3,6 +3,8 @@ require_once __DIR__.'/app/SessionHandler.php';
 require_once __DIR__.'/app/helpers.php';
 require_once __DIR__.'/vendor/autoload.php';
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
@@ -10,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $result = (new \App\Database\UserTable())->checkCredentials($username, $password);
     if ($result){
         header('Location: '.assets('dashboard/index'));
+    }else{
+        $errors['credentials'] = true;
     }
 }
 
@@ -55,6 +59,12 @@ if (isset($_SESSION['auth-user'])){
             <span class="block py-2 text-center text-14 text-gray-350"> برای استفاده از خدمات باید وارد شوید </span>
             <!----- start email or number input ----->
             <input name="username" class="mt-4 w-full overflow-hidden rounded-sm border border-solid border-transparent bg-gray-100 px-3 py-4 text-12 text-gray-250 outline-none focus:border-river-default focus:ring-0" type="text" placeholder="نام کاربری" />
+
+            <?php if (isset($errors['credentials']) && $errors['credentials']): ?>
+            <span class="text-12 text-red-500">
+                نام کاربری یا رمز عبور اشتباه است.
+            </span>
+            <?php endif; ?>
 
             <input name="password" class="mt-4 w-full overflow-hidden rounded-sm border border-solid border-transparent bg-gray-100 px-3 py-4 text-12 text-gray-250 outline-none focus:border-river-default focus:ring-0" type="password" placeholder="رمزعبور" />
             <!----- end email or number input ----->
